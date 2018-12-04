@@ -1,11 +1,10 @@
 # Guess_the_doodle
-In this project, I have explored the power of **Convolutional Neural Networks (CNNs)** and have used it for the task of **Object 
-Classification.** My CNN can look at the picture of a doodle you drew and by extracting and processing all sorts of **'features'**, 
-present on those doodle images, guess what you have drawn with ~92% accuracy.
+In this project, I have explored the power of **Convolutional Neural Networks (CNNs)** and have used it for the task of **Object  Classification.** My CNN can look at the picture of a doodle you drew and by extracting and processing all sorts of **'features'**, present on those doodle images, guess what you have drawn with ~92% accuracy.
 
 I have used the **Quick Draw** dataset from the [Google Quick Draw game](https://quickdraw.withgoogle.com/#) for the purposes 
-of training and testing the CNN model. Actually, this project more or less recreates what happens in the Quick Draw game, however, 
-there are minor differences in the gameplay and the approach using which the predictions are made is different.
+of training and testing the CNN model. Actually, this project more or less recreates what happens in the Quick Draw game, however, there are minor differences in the gameplay and the approach using which the predictions are made is different.
+
+Before I proceed however, here's a shoutout to [@darkHarry](https://github.com/darkHarry), [@saranshbarua](https://github.com/saranshbarua), [sxnaprkhr](https://github.com/sxnaprkhr) for helping with the design of the demo website.
 
 ## An overview of Computer Vision and CNNs.
 If you are a beginner, and want to learn more about Deep Learning, Computer Vision, or CNNs in particular, I recommend you to 
