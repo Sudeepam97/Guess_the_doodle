@@ -21,7 +21,7 @@ Other essential dependencies are stated below, but these should automatically ge
 - SciPy (1.1.0)
 - NumPy (v1.15.4)
 
-Finally, to run the web app, cd to the directory called **demo**, and type:
+Finally, to run the web app, open your terminal, cd to the directory called **demo**, and type:
 ```
 >> python3 app.py
 ```
