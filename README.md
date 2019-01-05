@@ -7,7 +7,7 @@ of training and testing the CNN model. Actually, this project more or less recre
 Before I proceed however, here's a shoutout to [@darkHarry](https://github.com/darkHarry), [@saranshbarua](https://github.com/saranshbarua), and [@sxnaprkhr](https://github.com/sxnaprkhr) for helping with the design of the demo website.
 
 ## Running this code
-If you would like to train the CNN model, then it can be done on [Google Colab](https://colab.research.google.com/notebooks/welcome.ipynb).
+If you would like to train the CNN model, then it can be done on [Google Colab](https://colab.research.google.com/notebooks/welcome.ipynb). Simply import the Jupyter Notebook from this repo to Colab and fire it up.
 
 After training the model, you'll get a file that is similar to the file **demo/my_model.h5**. This file contains the information related to our model, and will be used by our web app at the back end to actually classify the user made doodles.
 
