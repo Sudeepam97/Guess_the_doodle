@@ -6,6 +6,31 @@ of training and testing the CNN model. Actually, this project more or less recre
 
 Before I proceed however, here's a shoutout to [@darkHarry](https://github.com/darkHarry), [@saranshbarua](https://github.com/saranshbarua), and [@sxnaprkhr](https://github.com/sxnaprkhr) for helping with the design of the demo website.
 
+## Running this code
+If you would like to train the CNN model, then it can be done on [Google Colab](https://colab.research.google.com/notebooks/welcome.ipynb).
+
+After training the model, you'll get a file that is similar to the file **demo/my_model.h5**. This file contains the information related to our model, and will be used by our web app at the back end to actually classify the user made doodles.
+
+To run the web app, make sure you have the followig dependencies installed, within brackets are the specific versions I had:
+
+- TensorFlow (v.1.11.0)
+- Flask (v1.0.2)
+
+Other essential dependencies are stated below, but these should automatically get installed along with TensorFlow:
+- Keras (2.1.6-tf)
+- SciPy (1.1.0)
+- NumPy (v1.15.4)
+
+Finally, to run the web app, cd to the directory called **demo**, and type:
+```
+>> python3 app.py
+```
+Then open up your web browser (I had used Mozilla Firefox) and go to the following address:
+```
+http://localhost:5000
+```
+Enjoy playing. :)
+
 ## An overview of Computer Vision and CNNs.
 If you are a beginner, and want to learn more about Deep Learning, Computer Vision, or CNNs in particular, I recommend you to 
 look up various blog posts that talk about these topics. Plenty of MOOCs and open courses from prestigious institutions are 
