@@ -1,23 +1,23 @@
 # Guess_the_doodle
-This project uses **Convolutional Neural Networks (CNNs)** for the task of **Image  Classification.** The model looks at the picture of a doodle you drew and by extracting and processing all sorts of 'features', guesss the correct label with ~86% accuracy. The **Quick Draw** dataset from the [Google Quick Draw game](https://quickdraw.withgoogle.com/#) has been used for the purpose of training.
+This project uses **Convolutional Neural Networks (CNNs)** for the task of **Image  Classification.** The model looks at the picture of a doodle you drew and by extracting and processing all sorts of 'features', guesss the correct label with ~86% accuracy. The **Quick Draw** dataset from the [Google Quick Draw game](https://quickdraw.withgoogle.com/#) has been used for the purpose of training. This implementation classifies a doodle to one of the 60 output classes.
 
 ## Running this code
 * If you would like to play around with this model, you could visit the demo website here.
 
-* Or,you can also run the app on `localhost` to do that, clone the repo, and `cd` to the `demo` directory.
+* Or, you can also run the app on `localhost`. To do that, clone the repo and `cd` to the `demo` directory. Then...
 ```sh
-# Setup a virtual environment and install the required dependencies.
-# The env_setup file takes care of this.
+# Setup a virtual environment of python and install the required dependencies.
+# The `env_setup.sh` script takes care of this task.
 chmod +x env_setup.sh
 ./env_setup.sh
 
-# Activate the virtual environment
+# Activate the virtual environment.
 source deps/bin/activate
 
-# Start the server
+# Start the Flask server.
 python3 app.py
 ```
-* After this, open your browser and visit `http://localhost:5000`, and enjoy playing. :)
+* After this, open your browser and visit `http://localhost:5000` to enjoy playing. :)
 
 ## Training your own model
 * There is a Jupyter Notebook called `doodle_classifier.ipynb` in this repository. If you would like to train this model from scratch, simply open that notebook in [Colab](https://colab.research.google.com/notebooks/welcome.ipynb) and start your work.
