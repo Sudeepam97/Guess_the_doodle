@@ -1,83 +1,38 @@
-(function()
-{
-	var canvas = document.querySelector( "#canvas" );
-	var context = canvas.getContext( "2d" );
-	canvas.width = 280;
-	canvas.height = 280;
+$(document).ready(function(){
+	var marker = 'black';
+	var markerWidth = 10;
 
-	var Mouse = { x: 0, y: 0 };
-	var lastMouse = { x: 0, y: 0 };
-	context.fillStyle="white";
-	context.fillRect(0,0,canvas.width,canvas.height);
-	context.color = "black";
-	context.lineWidth = 10;
-    context.lineJoin = context.lineCap = 'round';
-	
-	debug();
+	var lastEvent;
+	var mouseDown = false;
 
-	canvas.addEventListener( "mousemove", function( e )
-	{
-		lastMouse.x = Mouse.x;
-		lastMouse.y = Mouse.y;
+	var $canvas = $('canvas');
+	var context = $('canvas')[0].getContext('2d');
+  var $canvas = $('#canvas');
+  context.fillStyle = "white";
+  context.fillRect(0, 0, canvas.width, canvas.height);
 
-		Mouse.x = e.pageX - this.offsetLeft;
-		Mouse.y = e.pageY - this.offsetTop;
+	$canvas.mousedown(function(e) {
+		lastEvent = e;
+		mouseDown = true;
+	}).mousemove(function(e) {
+		if(mouseDown){
+			context.beginPath();
+			context.moveTo(lastEvent.offsetX, lastEvent.offsetY);
+			context.lineTo(e.offsetX, e.offsetY);
+			context.lineWidth = markerWidth;
+			context.strokeStyle = marker;
+			context.lineCap = 'round';
+			context.stroke();
+			lastEvent = e;
+		}
+	}).mouseup(function(){
+		mouseDown = false;
+	});
 
-	}, false );
+	$('#clear').click(function(){
+		context.clearRect(0, 0, 280, 280);
+    context.fillStyle = "white";
+    context.fillRect(0, 0, canvas.width, canvas.height);
+	});
 
-	canvas.addEventListener( "mousedown", function( e )
-	{
-		canvas.addEventListener( "mousemove", onPaint, false );
-
-	}, false );
-
-	canvas.addEventListener( "mouseup", function()
-	{
-		canvas.removeEventListener( "mousemove", onPaint, false );
-
-	}, false );
-
-	var onPaint = function()
-	{	
-		context.lineWidth = context.lineWidth;
-		context.lineJoin = "round";
-		context.lineCap = "round";
-		context.strokeStyle = context.color;
-	
-		context.beginPath();
-		context.moveTo( lastMouse.x, lastMouse.y );
-		context.lineTo( Mouse.x, Mouse.y );
-		context.closePath();
-		context.stroke();
-	};
-
-	function debug()
-	{
-		/* CLEAR BUTTON */
-		var clearButton = $( "#clearButton" );
-		
-		clearButton.on( "click", function()
-		{
-			
-				context.clearRect( 0, 0, 280, 280 );
-				context.fillStyle="white";
-				context.fillRect(0,0,canvas.width,canvas.height);
-			
-		});
-
-		/* COLOR SELECTOR */
-
-		$( "#colors" ).change(function()
-		{
-			var color = $( "#colors" ).val();
-			context.color = color;
-		});
-		
-		/* LINE WIDTH */
-		
-		$( "#lineWidth" ).change(function()
-		{
-			context.lineWidth = $( this ).val();
-		});
-	}
-}());
+});

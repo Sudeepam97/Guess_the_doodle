@@ -1,22 +1,20 @@
 from flask import Flask, render_template, request
-from scipy.misc import imread, imresize
 import re
 import base64
-
-import tensorflow as tf
-import numpy as np
-from tensorflow import keras
-
 import json
 
+from scipy.misc import imread, imresize
+import numpy as np
+import keras
+
 ## Define our output classes
-out_classes = ['axe', 'boomerang', 'candle', 'donut', 'envelope', 'fish', 'frying pan', 'golf club', 'headphones', 'hourglass', 'ice cream', 'jail', 'knife', 'ladder', 'mountain', 'mushroom', 'octagon', 'pliers', 'rain', 'star', 'see saw', 'syringe', 'triangle', 'traffic light', 'umbrella', 'vase', 'wine glass', 'zigzag']
+out_classes = ['airplane', 'apple', 'axe', 'banana', 'baseball', 'baseball_bat', 'birthday_cake', 'book', 'bucket', 'bus', 'candle', 'camera', 'car', 'cell_phone', 'cloud', 'coffee_cup', 'crown', 'dolphin', 'donut', 'dumbbell', 'envelope', 'eye', 'eyeglasses', 'finger', 'fish', 'flashlight', 'flower', 'fork', 'golf_club', 'hammer', 'hand', 'headphones', 'hot_air_balloon', 'hourglass', 'ice_cream', 'key', 'knife', 'ladder', 'leaf', 'light_bulb', 'lightning', 'mountain', 'mushroom', 'octagon', 'pencil', 'pliers', 'screwdriver', 'see_saw', 'star', 'sword', 'syringe', 'tooth', 'toothbrush', 'traffic_light', 't-shirt', 'umbrella', 'vase', 'windmill', 'wine_glass', 'zigzag']
 
 ## Initalize our flask app
 app = Flask(__name__)
 
 ## Load the model trained on colab
-model = keras.models.load_model ("my_model.h5", custom_objects = {'GlorotUniform': tf.keras.initializers.glorot_uniform()})
+model = keras.models.load_model ("doodle_model.h5")
 model._make_predict_function()
 
 ## Decoding an image from base64 into raw representation
@@ -44,14 +42,14 @@ def predict():
 	x = x.reshape(1,28,28,1)
 	## Normalize
 	x = x / 255
-	## Make the top 4 predictions.
+	## Make the top 3 predictions.
 	pred = model.predict(x)
 	ind = (-pred).argsort()
 	ind = np.ndarray.flatten(ind)
-	ind = ind[0:4]
+	ind = ind[0:3]
 	## Create and return the response
 	response = {}
-	for i in range(4):
+	for i in range(3):
 	    response[str(i)] = out_classes[ind[i]]
 	return json.dumps(response)
 
