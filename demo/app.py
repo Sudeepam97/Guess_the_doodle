@@ -1,11 +1,11 @@
-from flask import Flask, render_template, request
 import re
-import base64
 import json
-
-from scipy.misc import imread, imresize
-import numpy as np
+import base64
 import keras
+import numpy as np
+from PIL import Image
+from flask import Flask, render_template, request
+
 
 ## Define our output classes
 out_classes = ['airplane', 'apple', 'axe', 'banana', 'baseball', 'baseball_bat', 'birthday_cake', 'book', 'bucket', 'bus', 'candle', 'camera', 'car', 'cell_phone', 'cloud', 'coffee_cup', 'crown', 'dolphin', 'donut', 'dumbbell', 'envelope', 'eye', 'eyeglasses', 'finger', 'fish', 'flashlight', 'flower', 'fork', 'golf_club', 'hammer', 'hand', 'headphones', 'hot_air_balloon', 'hourglass', 'ice_cream', 'key', 'knife', 'ladder', 'leaf', 'light_bulb', 'lightning', 'mountain', 'mushroom', 'octagon', 'pencil', 'pliers', 'screwdriver', 'see_saw', 'star', 'sword', 'syringe', 'tooth', 'toothbrush', 'traffic_light', 't-shirt', 'umbrella', 'vase', 'windmill', 'wine_glass', 'zigzag']
@@ -31,22 +31,20 @@ def index():
 def predict():
 	imgData = request.get_data()
 	convertImage(imgData.decode())
-	
-	## Read the image into memory
-	x = imread('output.png', mode = 'L')
-	## Compute a bit-wise inversion so black becomes white and vice versa
+
+	# Read, Resize, Invert, Convert to 4D tensor, Normalize	
+	pil_img = Image.open('output.png').convert('L')
+	x = np.array(pil_img.resize((28, 28), resample=2))
 	x = np.invert(x)
-	## Make it the right size
-	x = imresize(x, (28, 28))
-	## Convert to a 4D tensor to feed into our model
 	x = x.reshape(1,28,28,1)
-	## Normalize
 	x = x / 255
+
 	## Make the top 3 predictions.
 	pred = model.predict(x)
 	ind = (-pred).argsort()
 	ind = np.ndarray.flatten(ind)
 	ind = ind[0:3]
+	
 	## Create and return the response
 	response = {}
 	for i in range(3):
@@ -56,4 +54,4 @@ def predict():
 
 if __name__ == "__main__":
 	port = 5000
-	app.run(host='0.0.0.0', port=port)
+	app.run(host='0.0.0.0', port=port, debug=True)
