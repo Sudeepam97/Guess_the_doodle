@@ -5,11 +5,19 @@ This project uses **Convolutional Neural Networks (CNNs)** for the task of **Ima
 A video demonstration of this project can be found [here](https://youtu.be/CuCKVue0Lt8)
 
 ## Running this code
-You can run this application on your `localhost`. To do that, clone the repo and `cd` to the `demo` directory. Then...
+You can run this application on your `localhost`. To do so, install python 3.6.x or 3.7.x, then setup the following directory structure.
+
+```
+project
+  |- deps
+```
+
+`cd` to the `project` directory and clone. Then...
+
 ```sh
-# Setup a virtual environment of python
-# and activate the virtual environment.
---
+# Setup a python virtual environment
+virtualenv -p /usr/local/bin/python3 deps/     #`/usr/local/bin/python3` is the path to your python installation
+source deps/bin/activate
 
 # Install the required dependencies.
 # The `env_setup.sh` script takes care of this task.
