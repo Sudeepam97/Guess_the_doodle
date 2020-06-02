@@ -7,13 +7,14 @@ A video demonstration of this project can be found [here](https://youtu.be/CuCKV
 ## Running this code
 You can run this application on your `localhost`. To do that, clone the repo and `cd` to the `demo` directory. Then...
 ```sh
-# Setup a virtual environment of python and install the required dependencies.
+# Setup a virtual environment of python
+# and activate the virtual environment.
+--
+
+# Install the required dependencies.
 # The `env_setup.sh` script takes care of this task.
 chmod +x env_setup.sh
 ./env_setup.sh
-
-# Activate the virtual environment.
-source deps/bin/activate
 
 # Start the Flask server.
 python3 app.py
